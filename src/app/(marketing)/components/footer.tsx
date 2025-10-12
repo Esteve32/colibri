@@ -24,12 +24,9 @@ export default function Footer() {
 
                 <div className="lg:col-span-3 lg:col-start-8">
                     <h3 className="font-semibold mb-4">Get In Touch</h3>
-                    <p>Talrain 1, 6043<br />
-                        Adligenswil<br />
-                        Luzern<br />
-                        Switzerland</p>
-
-                    <p>Contact: esteve@colibri.partner</p>
+                    <p className="leading-loose">Talrain 1<br/>
+                    6043 Adligenswil<br/>
+                    Luzern, Switzerland</p>
                 </div>
             </div>
             <div className="text-sm text-muted-foreground py-8 border-t">

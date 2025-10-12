@@ -3,6 +3,7 @@ import { Separator } from "@/components/ui/separator";
 
 import type { Metadata } from 'next'
 import CTA from "../../components/slices/cta";
+import Link from "next/link";
 
 export const metadata: Metadata = {
     title: 'Research Hub | Colibri',
@@ -35,8 +36,8 @@ const Nest = () => {
             <section className="px-12 py-40">
                 <div className="max-w-screen-2xl mx-auto flex flex-col items-center text-center">
                     <h2 className="text-5xl font-semibold mb-8">About Our Company</h2>
-                    <p className="text-xl text-muted-foreground max-w-xl leading-relaxed mb-8">Our No-Code model offers significant economic advantages, radically minimizing specialized personnel costs and accelerating time-to-market, which directly impacts revenue generation and investor value.</p>
-                    <Button size="lg">Learn more</Button>
+                    <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed mb-8">Our No-Code model offers significant economic advantages, radically minimizing specialized personnel costs and accelerating time-to-market, which directly impacts revenue generation and investor value.</p>
+                    <Button size="lg"><Link href="/about">Learn more</Link></Button>
                 </div>
             </section>
             <Separator />
@@ -46,7 +47,7 @@ const Nest = () => {
                         <img src="https://colibri.partners/wp-content/uploads/2025/09/Colibri-rooftop-demo-in-USA-LA.jpg" />
                     </div>
                     <div>
-                        <h2 className="text-5xl font-semibold mb-8">Turning Insight into Advantage.</h2>
+                        <h2 className="text-5xl font-semibold mb-8 leading-tight">Turning Insight into Advantage.</h2>
                         <p className="text-xl text-muted-foreground mb-4 max-w-xl leading-relaxed">The Nest is our human-centred research and thought leadership hub—a living social lab where culture, technology, and ethics meet.</p>
                     </div>
                 </div>
@@ -56,17 +57,17 @@ const Nest = () => {
                 <div className="max-w-screen-2xl mx-auto flex flex-col gap-20">
                     <div className="text-center">
                         <h2 className="text-5xl font-semibold mb-8">The Nest produces</h2>
-                        <p className="text-xl text-secondary-foreground max-w-2xl mx-auto leading-relaxed">Here, we continuously explore the emerging field of AI-Human Experience (AIX®), co-creating with leaders, academics, and practitioners to shape the future of culture in the age of AI.</p>
+                        <p className="text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">Here, we continuously explore the emerging field of AI-Human Experience (AIX®), co-creating with leaders, academics, and practitioners to shape the future of culture in the age of AI.</p>
                     </div>
-                    <div className="grid grid-cols-3 gap-20 max-w-screen-lg mx-auto">
+                    <div className="grid grid-cols-3 gap-20 max-w-screen-xl mx-auto text-lg">
                         <div>
-                            <p className="text-muted-foreground mb-4 max-w-xl leading-relaxed">Case studies, podcasts, and interviews with pioneering voices in business and sport.</p>
+                            <p className="text-secondary-foreground mb-4 max-w-xl leading-relaxed">Case studies, podcasts, and interviews with pioneering voices in business and sport.</p>
                         </div>
                         <div>
-                            <p className="text-muted-foreground mb-4 max-w-xl leading-relaxed">Publishing and heuristics that translate complex insights into practical tools.</p>
+                            <p className="text-secondary-foreground mb-4 max-w-xl leading-relaxed">Publishing and heuristics that translate complex insights into practical tools.</p>
                         </div>
                         <div>
-                            <p className="text-muted-foreground mb-4 max-w-xl leading-relaxed">Premium research content and cultural playbooks that help organisations navigate trust, teamwork, and transformation.</p>
+                            <p className="text-secondary-foreground mb-4 max-w-xl leading-relaxed">Premium research content and cultural playbooks that help organisations navigate trust, teamwork, and transformation.</p>
                         </div>
                     </div>
                 </div>

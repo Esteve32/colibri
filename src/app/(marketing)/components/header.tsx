@@ -7,9 +7,12 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Spinner } from "@/components/spinner";
 import { mainRoutes } from "../_data/routes";
+import { usePathname } from "next/navigation";
+import NotificationButton from "@/app/(main)/_components/notifications/NotificationButton";
 
 export const NavBar = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
+  const pathname = usePathname();
 
   return (
     <div
@@ -17,11 +20,11 @@ export const NavBar = () => {
         "z-50 bg-background fixed top-0 flex items-center w-full p-6 border-b shadow-sm",
       )}
     >
-      <div><Link href="/">Colibri</Link></div>
+      <a href="/" className="font-medium text-xl flex gap-2"><img src="/assets/colibri.svg" /> Colibri</a>
       <div className="flex gap-2 items-center ml-10">
         {
           mainRoutes.map((route, idx) => (
-            <Button variant="ghost" key={idx}><Link href={route.url} className="text-secondary-foreground font-medium hover:text-primary">{route.title}</Link></Button>
+            <Button variant={pathname == route.url ? "default" : "ghost"} key={idx}><Link href={route.url} className="font-medium hover:text-primary">{route.title}</Link></Button>
           ))
         }
       </div>
@@ -30,18 +33,19 @@ export const NavBar = () => {
         {isLoading && <Spinner />}
         {!isAuthenticated && !isLoading && (
           <>
-            <SignInButton mode="redirect">
+            <SignInButton mode="modal">
               <Button variant="ghost" size="sm">
                 Log in
               </Button>
             </SignInButton>
-            <SignInButton mode="redirect">
+            <SignInButton mode="modal">
               <Button size="sm">Sign Up</Button>
             </SignInButton>
           </>
         )}
         {isAuthenticated && !isLoading && (
           <>
+            <NotificationButton/>
             <Button variant="ghost" size="sm" asChild>
               <Link href="/dashboard">Go to Dashboard</Link>
             </Button>

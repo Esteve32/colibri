@@ -13,6 +13,10 @@ export const mainRoutes = [
     url: "/about",
   },
   {
+    title: "Insights",
+    url: "/insights",
+  },
+  {
     title: "Contact",
     url: "/contact",
   },

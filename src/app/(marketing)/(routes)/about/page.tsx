@@ -56,34 +56,30 @@ const AboutUs = () => {
         <main className="min-h-full flex flex-col">
             <section className="px-12 py-20">
                 <div className="max-w-screen-2xl mx-auto space-y-20">
-                    <div className="flex gap-20">
-                        <div className="flex-1">
+                    <div className="grid grid-cols-2 gap-20">
+                        <div>
                             <h1 className="text-7xl font-semibold mb-6 max-w-xl">Our Team</h1>
                         </div>
-                        <div className="flex-1">
-                            <p className="text-2xl text-secondary-foreground mb-8 max-w-xl leading-relaxed">We bring together decades of experience in high-performance sport and global business transformation to design cultures that are resilient, ethical, and ready for the age of AI.</p>
-                            <p className="text-xl text-muted-foreground mb-8 max-w-xl leading-relaxed">At Colibri, we are more than a team, we are a collective of Olympic coaches, entrepreneurs, researchers, and culture builders united by one mission, to help organisations thrive through trust, teamwork, and conscious leadership.</p>
+                        <div>
+                            <p className="text-2xl text-secondary-foreground mb-8 leading-relaxed">We bring together decades of experience in high-performance sport and global business transformation to design cultures that are resilient, ethical, and ready for the age of AI.</p>
+                            <p className="text-xl text-muted-foreground leading-relaxed">At Colibri, we are more than a team, we are a collective of Olympic coaches, entrepreneurs, researchers, and culture builders united by one mission, to help organisations thrive through trust, teamwork, and conscious leadership.</p>
                         </div>
                     </div>
+                    <Separator />
                     <div className="grid grid-cols-3 gap-20 text-center max-w-screen-lg mx-auto">
                         {
                             teamMembers.map((member, idx) => (
                                 <div key={idx} className="flex flex-col items-center">
                                     <img src={`/assets/avatars/${member.image}`} className="size-40 rounded-full mb-4" />
-                                    <p className="text-xl font-semibold mb-1">{member.name}</p>
+                                    <p className="text-2xl font-semibold">{member.name}</p>
                                     <p className="text-muted-foreground mb-4">{member.title}</p>
-                                    <div><Button variant="ghost"><Link href={member.linkedIn} className="flex gap-2 items-center text-primary"><Linkedin className="fill-white" /> LinkedIn</Link></Button></div>
+                                    <div><Button variant="secondary"><Link href={member.linkedIn} className="flex gap-2 items-center"><Linkedin className="fill-primary stroke-0" /></Link></Button></div>
                                 </div>
                             ))
                         }
                     </div>
-
                 </div>
             </section>
-
-
-            <Separator />
-
             <CTA />
 
         </main>

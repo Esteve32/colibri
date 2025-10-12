@@ -69,8 +69,6 @@ const MarketingPage = () => {
                     </div>
                 </div>
             </section>
-
-            <Separator />
             <CTA />
 
 

@@ -27,9 +27,6 @@ const Contact = () => {
         </div>
       </section>
 
-
-      <Separator />
-
       <CTA />
     </main>
   )

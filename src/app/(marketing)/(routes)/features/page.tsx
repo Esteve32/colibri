@@ -45,12 +45,11 @@ const Features = () => {
             <Separator />
             <section className="px-12 py-40">
                 <div className="max-w-screen-2xl mx-auto flex flex-col items-center text-center">
-                    <h2 className="text-5xl font-semibold mb-8">Turn Invisible Culture Into Visible Results.</h2>
+                    <h2 className="text-5xl font-semibold max-w-xl leading-tight mb-8">Turn Invisible Culture Into Visible Results.</h2>
                     <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed mb-8">By embedding humane governance and ethical AI practices, the Platform ensures that organisations not only improve performance, but also build cultures ready for the challenges of the AI age.With the Colibri Platform, culture becomes your competitive advantage.</p>
                     <Button size="lg">Learn more</Button>
                 </div>
             </section>
-            <Separator />
 
             <CTA />
 
