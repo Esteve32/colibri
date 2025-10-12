@@ -13,6 +13,8 @@ import {
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 import RoleSelector from "../../_components/roleSelector";
+import NotificationButton from "../../_components/notifications/NotificationButton";
+import { UserButton } from "@clerk/nextjs";
 
 const settingsRoutes = [
     {
@@ -65,7 +67,7 @@ export default function SettingsLayout({
 
     return (
         <SidebarInset>
-            <header className="sticky top-0 z-50 bg-card w-full flex h-16 shrink-0 items-center gap-2 border-b border-b-border">
+            <header className="sticky top-0 z-50 bg-card w-full flex justify-between h-16 shrink-0 items-center gap-2 border-b border-b-border">
                 <div className="flex items-center gap-2 px-4">
                     <SidebarTrigger className="-ml-1" />
                     <Separator
@@ -85,6 +87,10 @@ export default function SettingsLayout({
                             </BreadcrumbItem>
                         </BreadcrumbList>
                     </Breadcrumb>
+                </div>
+                <div className="flex items-center gap-4">
+                    <NotificationButton/>
+                    <UserButton/>
                 </div>
             </header>
             <main className="bg-zinc-50 min-h-dvh p-10">
