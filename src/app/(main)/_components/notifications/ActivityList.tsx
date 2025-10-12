@@ -1,15 +1,8 @@
 import type { Activity } from "@/app/(main)/_data/activities"; // 👈 import the type
+import { timeAgo } from "@/lib/utils";
 
 interface ActivityListProps {
   activities: Activity[];
-}
-
-function timeAgo(date: Date) {
-  const diff = (Date.now() - date.getTime()) / 1000;
-  if (diff < 60) return "now";
-  if (diff < 3600) return `${Math.floor(diff / 60)} mins ago`;
-  if (diff < 86400) return `${Math.floor(diff / 3600)} hours ago`;
-  return `${Math.floor(diff / 86400)} days ago`;
 }
 
 export default function ActivityList({ activities }: ActivityListProps) {

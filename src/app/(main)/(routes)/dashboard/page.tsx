@@ -11,6 +11,7 @@ import { UserButton, useUser } from "@clerk/nextjs";
 import { Calendar, Circle, CloudDownload, Filter, MoreVertical, Sparkles, TrendingDown, TrendingUp } from "lucide-react";
 import NotificationButton from "../../_components/notifications/NotificationButton";
 import { useCurrentUser } from "@/context/UserContext";
+import { Badge } from "@/components/ui/badge";
 
 export default function Dashboard() {
 
@@ -51,7 +52,7 @@ export default function Dashboard() {
                 <AvatarImage src={currentUser.avatar} />
               </Avatar>
               <div className="w-full">
-                <h2 className="font-semibold text-3xl mb-0.5">Welcome, {currentUser.fullName}</h2>
+                <h2 className="font-semibold text-3xl mb-0.5">Welcome, {currentUser.fullName} <Badge variant="outline">{currentUser.role}</Badge></h2>
                 <p className="text-muted-foreground">Here is the overview of your company&apos;s culture</p>
               </div>
               <div>

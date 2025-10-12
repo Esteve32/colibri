@@ -45,7 +45,6 @@ export const NavBar = () => {
         )}
         {isAuthenticated && !isLoading && (
           <>
-            <NotificationButton/>
             <Button variant="ghost" size="sm" asChild>
               <Link href="/dashboard">Go to Dashboard</Link>
             </Button>
