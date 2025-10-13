@@ -6,12 +6,17 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
-import { CheckCircle2, Lightbulb, Calendar, Plus, ArrowRight } from "lucide-react";
+import {
+  CheckCircle2,
+  Lightbulb,
+  Calendar,
+  Plus,
+  ArrowRight,
+  Sparkles,
+} from "lucide-react";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
-// ---------------------------
-// Mock Data
-// ---------------------------
 type ActionItem = {
   id: string;
   title: string;
@@ -22,7 +27,7 @@ type ActionItem = {
   progress: number;
 };
 
-const actions: ActionItem[] = [
+const initialActions: ActionItem[] = [
   {
     id: "1",
     title: "Schedule a 1:1 to discuss project load",
@@ -43,22 +48,9 @@ const actions: ActionItem[] = [
     due: "2025-10-15",
     progress: 0,
   },
-  {
-    id: "3",
-    title: "Reflect weekly on motivation drivers",
-    description:
-      "Identify moments that sustain engagement and energy levels.",
-    status: "completed",
-    category: "motivation",
-    due: "2025-10-05",
-    progress: 100,
-  },
 ];
 
-// ---------------------------
-// Category Color Map
-// ---------------------------
-const categoryColors: Record<ActionItem["category"], string> = {
+const categoryColors = {
   leadership: "bg-indigo-100 text-indigo-700",
   trust: "bg-green-100 text-green-700",
   motivation: "bg-blue-100 text-blue-700",
@@ -66,24 +58,70 @@ const categoryColors: Record<ActionItem["category"], string> = {
   identity: "bg-amber-100 text-amber-700",
 };
 
+const aiSuggestions = [
+  {
+    trend: "pressure ↑",
+    suggestion:
+      "Consider delegating low-priority tasks or requesting support to balance workload.",
+    category: "pressure",
+  },
+  {
+    trend: "motivation ↓",
+    suggestion:
+      "Revisit personal growth goals and identify energizing activities for next sprint.",
+    category: "motivation",
+  },
+  {
+    trend: "trust ↓",
+    suggestion:
+      "Schedule informal check-ins to rebuild communication flow with peers.",
+    category: "trust",
+  },
+  {
+    trend: "leadership ↑",
+    suggestion:
+      "Encourage leading a mini-project or mentoring session to reinforce leadership growth.",
+    category: "leadership",
+  },
+  {
+    trend: "identity stable",
+    suggestion:
+      "Maintain current reflection rhythm — identity consistency supports long-term engagement.",
+    category: "identity",
+  },
+];
+
 // ---------------------------
 // Component
 // ---------------------------
 export default function ActionZone() {
-  const [data, setData] = useState(actions);
+  const [actions, setActions] = useState(initialActions);
+  const [showAISuggestions, setShowAISuggestions] = useState(false);
+  const [loadingAI, setLoadingAI] = useState(false);
 
-  const addNewAction = () => {
-    const newItem: ActionItem = {
-      id: Date.now().toString(),
-      title: "New Recommendation",
-      description: "Auto-generated suggestion based on recent behavioural trend.",
-      status: "pending",
-      category: "leadership",
-      due: "2025-10-25",
-      progress: 0,
-    };
-    setData((prev) => [...prev, newItem]);
+  const handleGenerateAI = async () => {
+    setLoadingAI(true);
+
+    // Simulate API delay
+    setTimeout(() => {
+      const suggestion =
+        aiSuggestions[Math.floor(Math.random() * aiSuggestions.length)];
+      const newItem: ActionItem = {
+        id: Date.now().toString(),
+        title: suggestion.suggestion,
+        description: `Generated from trend: ${suggestion.trend}`,
+        status: "pending",
+        category: suggestion.category as ActionItem["category"],
+        due: "2025-10-25",
+        progress: 0,
+      };
+      setActions((prev) => [...prev, newItem]);
+      setLoadingAI(false);
+      setShowAISuggestions(true);
+    }, 1200);
   };
+
+  const completedCount = actions.filter((a) => a.status === "completed").length;
 
   return (
     <Card className="w-full border rounded-2xl shadow-sm bg-white p-4">
@@ -92,45 +130,57 @@ export default function ActionZone() {
           <Lightbulb className="w-5 h-5 text-yellow-500" />
           Action Zone — Recommendations & Next Steps
         </CardTitle>
-        <Button variant="outline" size="sm" onClick={addNewAction}>
-          <Plus className="w-4 h-4 mr-1" /> Add
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleGenerateAI}
+            disabled={loadingAI}
+          >
+            {loadingAI ? (
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 animate-spin text-yellow-500" />{" "}
+                Generating...
+              </div>
+            ) : (
+              <>
+                <Sparkles className="w-4 h-4 text-yellow-500" /> Generate AI Action
+              </>
+            )}
+          </Button>
+          <Button variant="outline" size="sm">
+            <Plus className="w-4 h-4 mr-1" /> Manual
+          </Button>
+        </div>
       </CardHeader>
 
       <CardContent className="space-y-6">
         {/* Active Goals */}
         <div className="flex flex-col gap-5">
-          {data.map((item) => (
+          {actions.map((item) => (
             <motion.div
               key={item.id}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
-              className="border rounded-xl p-4 hover:bg-gray-50 transition group"
+              className="border rounded-xl p-4 hover:bg-gray-50 transition"
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <Badge
-                      className={`${categoryColors[item.category]} capitalize`}
-                    >
+                    <Badge className={cn(categoryColors[item.category], "capitalize")}>
                       {item.category}
                     </Badge>
-                    {item.status === "completed" && (
-                      <Badge variant="outline" className="text-green-600 border-green-300">
-                        Completed
-                      </Badge>
-                    )}
-                    {item.status === "in_progress" && (
-                      <Badge variant="outline" className="text-blue-600 border-blue-300">
-                        In Progress
-                      </Badge>
-                    )}
-                    {item.status === "pending" && (
-                      <Badge variant="outline" className="text-gray-600 border-gray-300">
-                        Pending
-                      </Badge>
-                    )}
+                    <Badge
+                      variant="outline"
+                      className={cn(
+                        item.status === "completed" && "text-green-600 border-green-300",
+                        item.status === "in_progress" && "text-blue-600 border-blue-300",
+                        item.status === "pending" && "text-gray-600 border-gray-300"
+                      )}
+                    >
+                      {item.status.replace("_", " ")}
+                    </Badge>
                   </div>
 
                   <h3 className="text-sm font-semibold text-gray-800">
@@ -156,32 +206,24 @@ export default function ActionZone() {
 
         <Separator />
 
-        {/* AI Recommendations Section */}
-        <div className="bg-gray-50 rounded-xl border p-4">
-          <h4 className="text-sm font-semibold text-gray-800 mb-2 flex items-center gap-2">
-            <Lightbulb className="w-4 h-4 text-yellow-500" /> Smart Recommendations
-          </h4>
-          <ul className="text-sm text-gray-700 space-y-2">
-            <li className="flex items-start gap-2">
-              <ArrowRight className="w-3 h-3 mt-[3px] text-gray-400" />
-              Encourage Alex to lead the next sprint retrospective to reinforce leadership and trust.
-            </li>
-            <li className="flex items-start gap-2">
-              <ArrowRight className="w-3 h-3 mt-[3px] text-gray-400" />
-              Suggest scheduling a “pulse survey” in 2 weeks to track motivation changes.
-            </li>
-            <li className="flex items-start gap-2">
-              <ArrowRight className="w-3 h-3 mt-[3px] text-gray-400" />
-              Recommend a brief reflection on identity alignment after project wrap-up.
-            </li>
-          </ul>
-        </div>
+        {/* AI Feedback Message */}
+        {showAISuggestions && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="bg-yellow-50 border border-yellow-200 rounded-xl p-4"
+          >
+            <p className="text-sm text-yellow-800 font-medium flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-yellow-500" />
+              New AI recommendation added based on recent behavioral changes.
+            </p>
+          </motion.div>
+        )}
 
         {/* Completion Indicator */}
-        <div className="mt-6 flex items-center gap-2 text-gray-600 text-sm">
+        <div className="mt-4 flex items-center gap-2 text-gray-600 text-sm">
           <CheckCircle2 className="w-4 h-4 text-green-500" />
-          {data.filter((d) => d.status === "completed").length} of{" "}
-          {data.length} actions completed
+          {completedCount} of {actions.length} actions completed
         </div>
       </CardContent>
     </Card>

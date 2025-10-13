@@ -9,7 +9,6 @@ export const metadata: Metadata = {
     description: '...',
 }
 
-
 const Features = () => {
     return (
 
@@ -18,8 +17,8 @@ const Features = () => {
                 <div className="max-w-screen-2xl mx-auto space-y-20">
                     <div className="flex gap-20">
                         <div className="flex-1">
-                            <h1 className="text-7xl font-semibold mb-6 max-w-xl">Culture, Finally Made Measurable.</h1>
-                            <p className="text-2xl text-secondary-foreground mb-8 max-w-xl leading-relaxed">Culture was the blind spot of business. Now, with Colibri’s Platform, you can see it, measure it, and improve it, turning culture into your most reliable driver of performance.</p>
+                            <h1 className="text-7xl font-semibold mb-6 max-w-xl">Culture, Finally Understood.</h1>
+                            <p className="text-2xl text-secondary-foreground mb-8 max-w-xl leading-relaxed">Culture isn’t about who fits in or who doesn’t. It’s about how people connect, collaborate, and create value together. Colibri helps you see and strengthen those dynamics — turning understanding into progress.</p>
                         </div>
                         <div>
                             <img src="https://colibri.partners/wp-content/uploads/2025/09/Colibri-Office-HQ-Paris-FR.jpg" className="w-full aspect-square" />
@@ -36,17 +35,16 @@ const Features = () => {
                     </div>
                     <div>
                         <h2 className="text-5xl font-semibold mb-8">The Colibri Platform</h2>
-                        <p className="text-xl text-secondary-foreground mb-8 max-w-xl leading-relaxed">The Platform is the world’s first Culture-as-a-Service (CaaS) system, your real-time window into the health of your organisation.</p>
-                        <p className="text-muted-foreground mb-4 max-w-xl leading-relaxed">At its core is our Cultural Health Index (CHI®), a “cultural thermometer” that measures trust, teamwork, and resilience across your teams. With dashboards for organisations, teams, and individuals, the Platform maps your cultural DNA and shows where attention is needed most.</p>
-                        <p className="text-muted-foreground mb-4 max-w-xl leading-relaxed">But it doesn’t stop at measurement. The Platform delivers actionable insights and personalised nudges, helping leaders and employees take the right steps at the right time. It transforms culture from something intangible into something visible, measurable, and manageable.</p>
+                        <p className="text-xl text-secondary-foreground mb-8 max-w-xl leading-relaxed">The Colibri Platform gives you a clear view of your organisation’s culture. It tracks trust, teamwork, and resilience across teams, highlighting the areas that matter most.</p>
+                        <p className="text-muted-foreground mb-4 max-w-xl leading-relaxed">The Platform goes beyond measurement. It provides insights and guidance so leaders and employees can take meaningful action. Colibri turns culture from something abstract into something visible, understandable, and actionable.</p>
                     </div>
                 </div>
             </section>
             <Separator />
             <section className="px-12 py-40">
                 <div className="max-w-screen-2xl mx-auto flex flex-col items-center text-center">
-                    <h2 className="text-5xl font-semibold max-w-xl leading-tight mb-8">Turn Invisible Culture Into Visible Results.</h2>
-                    <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed mb-8">By embedding humane governance and ethical AI practices, the Platform ensures that organisations not only improve performance, but also build cultures ready for the challenges of the AI age.With the Colibri Platform, culture becomes your competitive advantage.</p>
+                    <h2 className="text-5xl font-semibold max-w-xl leading-tight mb-8">Turn Invisible Culture Into Visible Results</h2>
+                    <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed mb-12">The Colibri Platform helps organisations see how their culture really works and take action to strengthen it. By embedding responsible AI practices and guiding thoughtful governance, it enables teams to perform better while building a resilient, future-ready culture. With Colibri, culture becomes a true competitive advantage.</p>
                     <Button size="lg">Learn more</Button>
                 </div>
             </section>

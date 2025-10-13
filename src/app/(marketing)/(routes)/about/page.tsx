@@ -31,12 +31,6 @@ const teamMembers = [
         linkedIn: "",
     },
     {
-        name: "Hash",
-        title: "Brand & Marketing",
-        image: "hash.png",
-        linkedIn: "",
-    },
-    {
         name: "Maria",
         title: "AIX Research",
         image: "maria.png",
@@ -61,15 +55,15 @@ const AboutUs = () => {
                             <h1 className="text-7xl font-semibold mb-6 max-w-xl">Our Team</h1>
                         </div>
                         <div>
-                            <p className="text-2xl text-secondary-foreground mb-8 leading-relaxed">We bring together decades of experience in high-performance sport and global business transformation to design cultures that are resilient, ethical, and ready for the age of AI.</p>
-                            <p className="text-xl text-muted-foreground leading-relaxed">At Colibri, we are more than a team, we are a collective of Olympic coaches, entrepreneurs, researchers, and culture builders united by one mission, to help organisations thrive through trust, teamwork, and conscious leadership.</p>
+                            <p className="text-2xl text-secondary-foreground mb-8 leading-relaxed">We bring together decades of experience across high-performance sport, global business transformation, manufacturing, design, travel, finance, insurance, and psychology to design cultures that are resilient, ethical, and ready for the age of AI.</p>
+                            <p className="text-xl text-muted-foreground leading-relaxed">At Colibri, we are more than a team. We are a collective of Olympic coaches, entrepreneurs, researchers, and culture builders united by one mission: to help organisations thrive through trust, teamwork, and conscious leadership. Our diverse backgrounds give us a unique perspective on how people, teams, and systems can flourish in any environment.</p>
                         </div>
                     </div>
                     <Separator />
-                    <div className="grid grid-cols-3 gap-20 text-center max-w-screen-lg mx-auto">
+                    <div className="flex justify-evenly gap-8 text-center max-w-screen-2xl mx-auto">
                         {
                             teamMembers.map((member, idx) => (
-                                <div key={idx} className="flex flex-col items-center">
+                                <div key={idx} className="w-full flex flex-col items-center">
                                     <img src={`/assets/avatars/${member.image}`} className="size-40 rounded-full mb-4" />
                                     <p className="text-2xl font-semibold">{member.name}</p>
                                     <p className="text-muted-foreground mb-4">{member.title}</p>

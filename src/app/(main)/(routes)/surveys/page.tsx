@@ -5,22 +5,23 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { motion } from "motion/react"
 import { surveys } from "../../_data/surveys";
-import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
+import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { usePathname } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
+import NotificationButton from "../../_components/notifications/NotificationButton";
+import { UserButton } from "@clerk/nextjs";
 
 export default function SurveysPage() {
 
-    const pathname = usePathname()
-        
-    return (
+    const pathname = usePathname();
 
+    return (
         <SidebarInset>
-            <header className="sticky top-0 z-50 bg-card w-full flex h-16 shrink-0 items-center gap-2 border-b border-b-border">
+            <header className="flex justify-between h-16 shrink-0 items-center gap-2 border-b border-b-border">
                 <div className="flex items-center gap-2 px-4">
-                    <SidebarTrigger className="-ml-1" />
+                    <SidebarTrigger />
                     <Separator
                         orientation="vertical"
                         className="mr-2 data-[orientation=vertical]:h-4"
@@ -28,16 +29,25 @@ export default function SurveysPage() {
                     <Breadcrumb>
                         <BreadcrumbList>
                             <BreadcrumbItem className="hidden md:block">
-                                <BreadcrumbLink href="/data">
-                                    Data
+                                <BreadcrumbLink href="#">
+                                    <BreadcrumbPage>Data</BreadcrumbPage>
                                 </BreadcrumbLink>
+
                             </BreadcrumbItem>
-                            <BreadcrumbSeparator className="hidden md:block" />
-                            <BreadcrumbItem>
-                                <BreadcrumbPage>Surveys</BreadcrumbPage>
+                            <BreadcrumbSeparator />
+                            <BreadcrumbItem className="hidden md:block">
+                                <BreadcrumbLink href="/surveys">
+                                    <BreadcrumbPage>Surveys</BreadcrumbPage>
+                                </BreadcrumbLink>
+
                             </BreadcrumbItem>
                         </BreadcrumbList>
+
                     </Breadcrumb>
+                </div>
+                <div className="flex items-center gap-8 pr-6">
+                    <NotificationButton />
+                    <UserButton />
                 </div>
             </header>
             <main className="bg-zinc-50 min-h-dvh p-10">
@@ -65,7 +75,7 @@ export default function SurveysPage() {
                                                     <span>{survey.completionRate}%</span>
                                                 </div>
                                                 <Progress value={survey.completionRate} className="h-2" />
-                                            </div>                                            
+                                            </div>
                                         </CardContent>
                                     </Card>
                                 </Link>
